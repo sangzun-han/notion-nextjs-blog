@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ThemeGoggle from "./theme-toggle";
+import ThemeToggle from "./theme-toggle";
 import siteConfig from "../../../site.config";
 
 const MENU_ITEMS = [{ path: "about", name: "About" }];
@@ -12,19 +12,17 @@ export default function Header() {
           <Link href="/" className="selt-start">
             <h1 className="text-xl font-bold">{siteConfig.title}</h1>
           </Link>
-          <div className="flex space-x-8 self-center">
-            <ul className="flex items-center cursor-pointer gap-x-4">
-              <ThemeGoggle />
-              {MENU_ITEMS.map((item) => (
-                <li
-                  key={item.path}
-                  className="text-black font-medium hover:text-black/50 dark:text-white dark:hover:text-white/50"
-                >
-                  {item.name}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="flex items-center cursor-pointer gap-x-4">
+            <ThemeToggle />
+            {MENU_ITEMS.map((item) => (
+              <li
+                key={item.path}
+                className="text-black font-medium hover:text-black/50 dark:text-white dark:hover:text-white/50"
+              >
+                {item.name}
+              </li>
+            ))}
+          </ul>
         </div>
       </header>
     </div>
