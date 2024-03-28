@@ -47,8 +47,8 @@ export async function generateMetadata({ params: { slug } }: { params: { slug: s
   );
 
   return {
-    metadataBase: "http://localhost:3000/categories/" + encodeURIComponent(slug),
-    title: `Posts in ${decodedSlug} - My Blog`,
+    metadataBase: "http://sangzun-log.vercel.app/category/" + encodeURIComponent(slug),
+    title: `Posts in ${decodedSlug} - sangzun'log`,
     openGraph: {
       images: [
         {
