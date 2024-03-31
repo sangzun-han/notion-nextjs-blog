@@ -10,5 +10,5 @@ export type Post = {
   category: CategoryInfo[];
   date: string;
   lastEditedAt: number;
-  cover?: string;
+  cover: string;
 };

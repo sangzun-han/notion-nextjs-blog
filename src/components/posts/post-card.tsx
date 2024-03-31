@@ -9,7 +9,6 @@ type PostCardProps = {
 
 export default function PostCard({ post }: PostCardProps) {
   const { id, title, slug, category, date, cover } = post;
-  const src = cover ? `https://notion.so/${cover}` : "/default.jpeg";
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -21,7 +20,7 @@ export default function PostCard({ post }: PostCardProps) {
         <figure>
           <Image
             className="w-full h-48 object-cover"
-            src={src}
+            src={cover}
             alt="post cover image"
             width={400}
             height={200}

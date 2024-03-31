@@ -41,7 +41,8 @@ export async function getAllPosts() {
       const slug = properties[propertyMap["slug"]][0][0];
       const title = properties[propertyMap["title"]][0][0];
       const date = properties[propertyMap["date"]]?.[0]?.[1]?.[0]?.[1]?.["start_date"] ?? formattedDate;
-      const cover: string = recordMap.block[pageId].value.format?.page_cover;
+      const src: string = recordMap.block[pageId].value.format?.page_cover;
+      const cover = src ? `https://notion.so/${src}` : "default.jpeg";
 
       let categoriesWithColor = [];
       if (properties[propertyMap["category"]]) {
