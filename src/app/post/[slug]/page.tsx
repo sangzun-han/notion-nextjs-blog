@@ -36,9 +36,10 @@ export async function generateMetadata({ params: { slug } }: { params: { slug: s
 
   return post
     ? {
-        metadataBase: "https://sangzun-log.vercel.app",
         title: post.title,
         openGraph: {
+          metadataBase:
+            process.env.NODE_ENV === "production" ? "https://sangzun-log.vercel.app" : "http://localhost:3000",
           images: [
             {
               url: post.cover ? post.cover : "default.jpeg",
