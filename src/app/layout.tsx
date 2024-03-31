@@ -14,6 +14,15 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  openGraph: {
+    images: [
+      {
+        url: "/profile.webp",
+        width: 400,
+        height: 300,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
