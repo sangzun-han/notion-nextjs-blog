@@ -1,6 +1,7 @@
-import { getRecordMap } from "@/libs/notion";
+import { getRecordMap, mapImageUrl } from "@/libs/notion";
 import { Post } from "@/types/posts";
 import { NOTION_DATABASE_ID } from "../../config";
+import { Block } from "notion-types";
 
 const today = new Date();
 const formattedDate = today.toISOString().split("T")[0];
@@ -42,7 +43,11 @@ export async function getAllPosts() {
       const title = properties[propertyMap["title"]][0][0];
       const date = properties[propertyMap["date"]]?.[0]?.[1]?.[0]?.[1]?.["start_date"] ?? formattedDate;
       const src: string = recordMap.block[pageId].value.format?.page_cover;
-      const cover = src ? `https://notion.so/${src}` : "default.jpeg";
+
+      let cover;
+      if (!src) cover = "default.jpeg";
+      else if (src.startsWith("https://")) cover = mapImageUrl(src, recordMap.block[pageId]?.value) ?? "default.jpeg";
+      else cover = `https://notion.so${src}`;
 
       let categoriesWithColor = [];
       if (properties[propertyMap["category"]]) {
