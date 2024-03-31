@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     locale: "ko-KR",
     images: [
       {
-        url: siteConfig.profileImage,
+        url: `https://sangzun-log.vercel.app/${siteConfig.profileImage}`,
       },
     ],
   },
