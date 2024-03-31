@@ -9,6 +9,8 @@ type PostCardProps = {
 
 export default function PostCard({ post }: PostCardProps) {
   const { id, title, slug, category, date, cover } = post;
+
+  console.log(cover);
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
