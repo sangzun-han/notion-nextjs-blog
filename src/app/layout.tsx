@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     default: "sangzun's blog",
     template: "%s | sangzun",
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
