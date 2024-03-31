@@ -10,7 +10,7 @@ const siteConfig: SiteConfig = {
   title: "sangzun's log", // 사이트 이름
   profileImage: "/profile.webp", // 프로필 이미지 경로
   name: "sangzun", // 이름
-  description: "안녕하세요 개발자 입니다.", // 사이트 설명
+  description: "안녕하세요 프론트엔드 개발자 한상준 입니다.", // 사이트 설명
 };
 
 // siteConfig 객체 export

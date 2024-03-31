@@ -26,7 +26,7 @@ export async function getAllPosts() {
   });
 
   Object.keys(block).forEach((pageId) => {
-    if (block[pageId].value.type === "page" && block[pageId].value.properties[propertyMap["slug"]]) {
+    if (block[pageId].value.type === "page" && block[pageId].value.properties[propertyMap["category"]]) {
       const { properties, last_edited_time } = block[pageId].value;
       const contents = block[pageId].value.content || [];
       const dates = contents.map((content) => {
