@@ -10,7 +10,6 @@ type PostCardProps = {
 export default function PostCard({ post }: PostCardProps) {
   const { id, title, slug, category, date, cover } = post;
 
-  console.log(cover);
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -32,7 +31,7 @@ export default function PostCard({ post }: PostCardProps) {
         <div className="p-5">
           <header>
             <time className="text-slate-400 text-sm dark:text-slate-300">{formattedDate}</time>
-            <h2 className="text-xl font-semibold mb-3 dark:text-white">{title}</h2>
+            <p className="text-xl font-semibold mb-3 dark:text-white">{title}</p>
             <p className="text-slate-500 dark:text-slate-300">{slug}</p>
           </header>
           <footer className="flex flex-wrap gap-2 text-[#37352F] pt-2">

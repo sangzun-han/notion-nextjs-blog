@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/header/header";
 import NextThemeProvider from "@/components/providers/theme";
+import siteConfig from "../../site.config";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -14,14 +16,22 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+
   openGraph: {
+    type: "website",
+    url: "https://sangzun-log.vercel.app",
+    title: "sangzun-log",
+    description: "welcome to sangzun-log🔥",
+    locale: "ko-KR",
     images: [
       {
-        url: "/profile.webp",
-        width: 400,
-        height: 300,
+        url: siteConfig.profileImage,
       },
     ],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

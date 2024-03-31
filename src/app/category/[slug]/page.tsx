@@ -2,6 +2,7 @@ import PostList from "@/components/posts/post-list";
 import { getAllPosts } from "@/services/posts";
 import { notFound } from "next/navigation";
 import { CategoryInfo } from "@/types/posts";
+import siteConfig from "../../../../site.config";
 
 type CategoryPageProps = {
   params: {
@@ -52,7 +53,7 @@ export async function generateMetadata({ params: { slug } }: { params: { slug: s
       metadataBase: process.env.NODE_ENV === "production" ? "https://sangzun-log.vercel.app" : "http://localhost:3000",
       images: [
         {
-          url: categoryPost?.cover ? categoryPost.cover : "default.jpeg",
+          url: categoryPost?.cover ? categoryPost.cover : siteConfig.defaultImage,
           width: 400,
           height: 300,
         },

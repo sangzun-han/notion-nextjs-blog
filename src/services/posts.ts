@@ -2,6 +2,7 @@ import { getRecordMap, mapImageUrl } from "@/libs/notion";
 import { Post } from "@/types/posts";
 import { NOTION_DATABASE_ID } from "../../config";
 import { Block } from "notion-types";
+import siteConfig from "../../site.config";
 
 const today = new Date();
 const formattedDate = today.toISOString().split("T")[0];
@@ -45,8 +46,9 @@ export async function getAllPosts() {
       const src: string = recordMap.block[pageId].value.format?.page_cover;
 
       let cover;
-      if (!src) cover = "default.jpeg";
-      else if (src.startsWith("https://")) cover = mapImageUrl(src, recordMap.block[pageId]?.value) ?? "default.jpeg";
+      if (!src) cover = siteConfig.defaultImage;
+      else if (src.startsWith("https://"))
+        cover = mapImageUrl(src, recordMap.block[pageId]?.value) ?? siteConfig.defaultImage;
       else cover = `https://notion.so${src}`;
 
       let categoriesWithColor = [];
