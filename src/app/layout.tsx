@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICAATION,
+    google: process.env.GOOGLE_SITE_VERIFICATION,
   },
   openGraph: {
     type: "website",
