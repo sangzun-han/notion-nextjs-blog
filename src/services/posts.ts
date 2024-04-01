@@ -70,5 +70,6 @@ export async function getAllPosts() {
       });
     }
   });
+
   return allPosts;
 }

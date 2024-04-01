@@ -23,7 +23,6 @@ export default function Sidebar({ allCategories }: SidebarProps) {
           />
         </div>
         <p className="text-slate-500 mb-2 dark:text-white">{siteConfig.description}</p>
-        <p className="text-slate-500 mb-4 dark:text-white">{siteConfig.description}</p>
         <nav>
           <ul className="flex lg:flex-col gap-x-3 lg:gap-0 space-y-0 lg:space-y-3 flex-wrap gap-y-4 justify-start sm:justify-center">
             {allCategories.map((category) => (

@@ -43,14 +43,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body className={`${inter.className} bg-white dark:bg-[#2f3437]`}>
-        <NextThemeProvider>
-          <RecoilProvider>
+        <RecoilProvider>
+          <NextThemeProvider>
             <Header />
-            <main className="text-black">{children}</main>
-          </RecoilProvider>
-        </NextThemeProvider>
+          </NextThemeProvider>
+          <main className="text-black">{children}</main>
+        </RecoilProvider>
       </body>
     </html>
   );

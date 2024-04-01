@@ -1,7 +1,6 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { Input } from "../ui/input";
 import { atomSeartState } from "@/recoil/atom";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";

@@ -10,9 +10,6 @@
     "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.0.2",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
     "lucide-react": "^0.359.0",
     "next": "14.1.4",
     "next-themes": "^0.3.0",
@@ -20,9 +17,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-notion-x": "^6.16.0",
-    "recoil": "^0.7.7",
-    "tailwind-merge": "^2.2.2",
-    "tailwindcss-animate": "^1.0.7"
+    "recoil": "^0.7.7"
   },
   "devDependencies": {
     "@types/node": "^20",

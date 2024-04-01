@@ -10,6 +10,7 @@ import { Post } from "@/types/posts";
 import { NotionRenderer } from "react-notion-x";
 import { Block } from "notion-types";
 import { useTheme } from "next-themes";
+import useMounted from "@/hooks/use-mounted";
 
 type NotionPageProps = {
   post: Post;
@@ -26,12 +27,14 @@ const Modal = dynamic(() => import("react-notion-x/build/third-party/modal").the
 export default function NotionPage({ post, recordMap }: NotionPageProps) {
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
+  const { mounted } = useMounted();
+
   return (
     <div className="mt-4">
       <NotionRenderer
         recordMap={recordMap}
         fullPage={true}
-        darkMode={currentTheme === "dark" ? true : false}
+        darkMode={mounted ? currentTheme === "dark" : false}
         forceCustomImages={true}
         showTableOfContents={true}
         disableHeader={true}
