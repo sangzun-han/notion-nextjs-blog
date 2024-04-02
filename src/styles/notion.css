@@ -24,6 +24,17 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.9) !important;
 }
 
+.dark .notion-aside-table-of-contents {
+  background: #2f3437 !important;
+}
+
+.dark .notion-table-of-contents-item {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dark .notion-table-of-contents-active-item {
+  color: rgb(46, 170, 220) !important;
+}
 .notion-frame {
   padding: 0;
 }

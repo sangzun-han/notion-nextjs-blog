@@ -7,7 +7,7 @@ const notion = new NotionAPI({ authToken: CONFIG.notionConfig.token });
 
 export async function getRecordMap(id: string) {
   const request = async () => {
-    return await notion.getPage(id, { concurrency: 1 });
+    return await notion.getPage(id, { concurrency: 1, signFileUrls: true });
   };
   return await notionRequestQueue.add(request);
 }
