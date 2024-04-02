@@ -3,6 +3,27 @@
   --notion-header-height: 54px;
 }
 
+.dark .notion {
+  color: rgba(255, 255, 255, 0.9) !important;
+  caret-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dark .notion-app {
+  background: #2f3437 !important;
+}
+
+.dark .notion-bookmark > div:first-child {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dark .notion-bookmark {
+  border-color: rgb(71, 76, 80) !important;
+}
+
+.dark .notion-collection-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9) !important;
+}
+
 .notion-frame {
   padding: 0;
 }

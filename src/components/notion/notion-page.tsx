@@ -96,7 +96,11 @@ export function mapImageUrl(url: string, block: Block): string | null {
   notionImageUrlV2.searchParams.set("id", block.id);
   notionImageUrlV2.searchParams.set("cache", "v2");
 
-  url = notionImageUrlV2.toString();
+  let finalUrl = notionImageUrlV2.toString();
+  const httpsIndex = finalUrl.indexOf("https://", finalUrl.indexOf("https://") + 1);
+  if (httpsIndex !== -1) {
+    finalUrl = finalUrl.substring(httpsIndex);
+  }
 
-  return url;
+  return finalUrl;
 }
