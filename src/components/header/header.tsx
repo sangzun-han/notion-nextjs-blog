@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ThemeToggle from "./theme-toggle";
-import siteConfig from "../../../site.config";
+import { CONFIG } from "../../../site.config";
 
 const MENU_ITEMS = [{ path: "about", name: "About" }];
 
@@ -10,7 +10,7 @@ export default function Header() {
       <header className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center">
           <Link href="/" className="selt-start">
-            <h1 className="text-xl font-bold">{siteConfig.title}</h1>
+            <h1 className="text-xl font-bold">{CONFIG.blog.title}</h1>
           </Link>
           <ul className="flex items-center cursor-pointer gap-x-4">
             <ThemeToggle />

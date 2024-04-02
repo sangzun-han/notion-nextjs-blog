@@ -1,8 +1,6 @@
 import { getRecordMap, mapImageUrl } from "@/libs/notion";
 import { Post } from "@/types/posts";
-import { NOTION_DATABASE_ID } from "../../config";
-import { Block } from "notion-types";
-import siteConfig from "../../site.config";
+import { CONFIG } from "../../site.config";
 
 const today = new Date();
 const formattedDate = today.toISOString().split("T")[0];
@@ -10,7 +8,7 @@ const formattedDate = today.toISOString().split("T")[0];
 // 노션에서 모든 database값들은 가져온다.
 export async function getAllPosts() {
   const allPosts: Post[] = [];
-  const recordMap = await getRecordMap(NOTION_DATABASE_ID);
+  const recordMap = await getRecordMap(CONFIG.notionConfig.pageId);
   const { block, collection } = recordMap;
 
   const schema = Object.values(collection)[0].value.schema;
@@ -46,9 +44,9 @@ export async function getAllPosts() {
       const src: string = recordMap.block[pageId].value.format?.page_cover;
 
       let cover;
-      if (!src) cover = siteConfig.defaultImage;
+      if (!src) cover = CONFIG.defaultImage;
       else if (src.startsWith("https://"))
-        cover = mapImageUrl(src, recordMap.block[pageId]?.value) ?? siteConfig.defaultImage;
+        cover = mapImageUrl(src, recordMap.block[pageId]?.value) ?? CONFIG.defaultImage;
       else cover = `https://notion.so${src}`;
 
       let categoriesWithColor = [];

@@ -2,7 +2,7 @@ import NotionPage from "@/components/notion/notion-page";
 import { getRecordMap } from "@/libs/notion";
 import { getAllPosts } from "@/services/posts";
 import { notFound } from "next/navigation";
-import siteConfig from "../../../../site.config";
+import { CONFIG } from "../../../../site.config";
 
 type PostPageProps = {
   params: {
@@ -32,18 +32,23 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params: { slug } }: { params: { slug: string } }) {
   const posts = await getAllPosts();
-  const decodeedSlug = decodeURIComponent(slug);
-  const post = posts.find((p) => p.slug === decodeedSlug);
+  const decodedSlug = decodeURIComponent(slug);
+  const post = posts.find((p) => p.slug === decodedSlug);
 
   return post
     ? {
         title: post.title,
+        description: post.slug,
+        alternate: {
+          canonical: `https://sangzun-log.vercel.app/post/${decodedSlug}`,
+        },
         openGraph: {
-          metadataBase:
-            process.env.NODE_ENV === "production" ? "https://sangzun-log.vercel.app" : "http://localhost:3000",
+          type: "website",
+          url: `https://sangzun-log.vercel.app/post/${decodedSlug}`,
+          metadataBase: `${CONFIG.url}/post`,
           images: [
             {
-              url: post.cover ? post.cover : siteConfig.defaultImage,
+              url: post.cover ? post.cover : CONFIG.defaultImage,
               width: 400,
               height: 300,
             },

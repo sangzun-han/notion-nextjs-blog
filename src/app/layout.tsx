@@ -1,40 +1,16 @@
-import RecoilProvider from "@/components/providers/recoil-provider";
 import "./globals.css";
 import type { Metadata } from "next";
+import RecoilProvider from "@/components/providers/recoil-provider";
 import { Inter } from "next/font/google";
+import { CONFIG } from "../../site.config";
+import { defaultMetaData } from "../../site.metadata";
 import Header from "@/components/header/header";
 import NextThemeProvider from "@/components/providers/theme";
-import siteConfig from "../../site.config";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: {
-    default: "sangzun's blog",
-    template: "%s | sangzun",
-  },
-  icons: {
-    icon: "/favicon.ico",
-  },
-  verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
-  },
-  openGraph: {
-    type: "website",
-    url: "https://sangzun-log.vercel.app",
-    title: "sangzun-log",
-    description: "welcome to sangzun-log🔥",
-    locale: "ko-KR",
-    images: [
-      {
-        url: `https://sangzun-log.vercel.app/${siteConfig.profileImage}`,
-      },
-    ],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  ...defaultMetaData,
 };
 
 export default function RootLayout({
@@ -43,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html lang={CONFIG.lang} suppressHydrationWarning>
       <body className={`${inter.className} bg-white dark:bg-[#2f3437]`}>
         <RecoilProvider>
           <NextThemeProvider>

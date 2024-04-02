@@ -1,28 +1,15 @@
 import { NotionAPI } from "notion-client";
 import { Block } from "notion-types";
-import { NOTION_TOKEN_V2 } from "../../config";
 import { notionRequestQueue } from "@/services/notion";
+import { CONFIG } from "../../site.config";
 
-const notion = new NotionAPI({ authToken: NOTION_TOKEN_V2 });
+const notion = new NotionAPI({ authToken: CONFIG.notionConfig.token });
 
-export async function getRecordMap(id: string, retryCount = 0) {
-  try {
-    const request = async () => {
-      return await notion.getPage(id, { concurrency: 1 });
-    };
-    return await notionRequestQueue.add(request);
-  } catch (error: any) {
-    const maxRetries = 3; // 최대 재시도 횟수
-    console.dir(error.response, { depth: null });
-    if (retryCount < maxRetries && error.response && error.response.status === 429) {
-      const retryAfter = error.response.headers["retry-after"] || 1; // 기본 대기 시간을 1초로 설정
-      console.log(`Retrying after ${retryAfter} seconds...`);
-      await new Promise((resolve) => setTimeout(resolve, retryAfter * 1000));
-      return getRecordMap(id, retryCount + 1); // 재시도
-    } else {
-      throw error; // 재시도 횟수를 초과하거나 429 외의 다른 오류인 경우 에러를 다시 throw
-    }
-  }
+export async function getRecordMap(id: string) {
+  const request = async () => {
+    return await notion.getPage(id, { concurrency: 1 });
+  };
+  return await notionRequestQueue.add(request);
 }
 
 export function mapImageUrl(url: string, block: Block): string | null {

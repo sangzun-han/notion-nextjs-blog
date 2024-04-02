@@ -1,21 +1,31 @@
-type SiteConfig = {
-  title: string;
-  profileImage: string;
-  defaultImage: string;
-  name: string;
-  description: string;
-  favicon: string;
-};
+export const CONFIG = {
+  profile: {
+    name: "sangzun",
+    image: "/profile.webp",
+    role: "frontend dev",
+    about: "안녕하세요 한상준입니다.",
+  },
 
-// siteConfig 객체 생성
-const siteConfig: SiteConfig = {
-  title: "sangzun's log", // 사이트 이름
-  profileImage: "/profile.webp", // 프로필 이미지 경로
+  blog: {
+    title: "sangzun-log",
+    description: "welcome to sangzun-log🔥",
+    icon: "/favicon.ico",
+  },
+
   defaultImage: "/default.jpeg",
-  name: "sangzun", // 이름
-  description: "안녕하세요 프론트엔드 개발자 한상준 입니다.", // 사이트 설명
-  favicon: "/favicon.ico",
-};
+  link: "https://sangzun-log.vercel.app",
+  url: "https://sangzun-log.vercel.app",
+  lang: "ko-KR",
 
-// siteConfig 객체 export
-export default siteConfig;
+  notionConfig: {
+    pageId: process.env.NOTION_DATABASE_ID as string,
+    token: process.env.NOTION_TOKEN_V2 as string,
+  },
+
+  googleSearchConsole: {
+    enable: true,
+    config: {
+      siteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    },
+  },
+};
