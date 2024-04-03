@@ -10,13 +10,14 @@ type PostCardProps = {
 export default function PostCard({ post }: PostCardProps) {
   const { id, title, slug, category, date, cover } = post;
 
+  const formattedSlug = slug.replace(/\s+/g, "-");
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
   return (
-    <Link href={`/post/${slug}`}>
+    <Link href={`/post/${formattedSlug}`}>
       <article className="bg-white rounded-lg shadow-lg overflow-hidden mb-4 dark:bg-[#3a3f41]">
         <figure>
           <Image

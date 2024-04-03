@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ThemeToggle from "./theme-toggle";
 import { CONFIG } from "../../../site.config";
+import GithubLink from "./github-link";
 
 const MENU_ITEMS = [{ path: "about", name: "About" }];
 
@@ -8,6 +9,7 @@ export default function Header() {
   return (
     <div className="bg-white w-full sticky top-0 z-50 backdrop-blur-xl py-4 p-8 text-black dark:bg-[#2f3437] dark:text-white border-b border-gray-200 dark:border-b-gray-200">
       <header className="max-w-7xl mx-auto">
+        <GithubLink />
         <div className="flex justify-between items-center">
           <Link href="/" className="selt-start">
             <h1 className="text-xl font-bold">{CONFIG.blog.title}</h1>

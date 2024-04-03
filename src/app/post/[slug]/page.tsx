@@ -12,8 +12,8 @@ type PostPageProps = {
 
 export default async function PostPage({ params: { slug } }: PostPageProps) {
   const posts = await getAllPosts();
-  const decodeedSlug = decodeURIComponent(slug);
-  const post = posts.find((p) => p.slug === decodeedSlug);
+  const decodedSlug = decodeURIComponent(slug);
+  const post = posts.find((p) => p.slug.replace(/\s+/g, "-") === decodedSlug);
 
   if (!post) return notFound();
 

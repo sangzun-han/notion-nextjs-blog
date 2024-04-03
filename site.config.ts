@@ -4,6 +4,7 @@ export const CONFIG = {
     image: "/profile.webp",
     role: "frontend dev",
     about: "안녕하세요 한상준입니다.",
+    github: "https://github.com/sangzun-han",
   },
 
   blog: {
