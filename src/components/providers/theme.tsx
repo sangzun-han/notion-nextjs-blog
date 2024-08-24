@@ -1,10 +1,17 @@
 "use client";
-
-import useMounted from "@/hooks/use-mounted";
+import { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
 
-export default function NextThemeProvider({ children }: { children: React.ReactNode }) {
-  const { mounted } = useMounted();
-
-  return mounted ? <ThemeProvider attribute="class">{children}</ThemeProvider> : null;
+interface ProviderProps {
+  children: ReactNode;
 }
+
+const NextThemeProvider: React.FC<ProviderProps> = ({ children }) => {
+  return (
+    <ThemeProvider attribute="class" storageKey="theme" defaultTheme="dark">
+      {children}
+    </ThemeProvider>
+  );
+};
+
+export default NextThemeProvider;

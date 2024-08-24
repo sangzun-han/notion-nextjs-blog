@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type CategoryProps = {
   category: {
@@ -11,11 +11,12 @@ type CategoryProps = {
 };
 
 type ColorVariants = {
-  [key: string]: string; // 인덱스 시그니처 추가
+  [key: string]: string;
 };
+
 const colorVariants: ColorVariants = {
   purple: "bg-notion-purple hover:bg-notion-purple/40 text-black dark:text-white",
-  gray: "bg-notion-gray hover:bg-notion-gray/40 text-black dark:text-white",
+  gray: "bg-notion-gray hover:bg-notion-gray/50 text-black dark:text-white",
   brown: "bg-notion-brown hover:bg-notion-brown/40 text-black dark:text-white",
   blue: "bg-notion-blue hover:bg-notion-blue/40 text-black dark:text-white",
   yellow: "bg-notion-yellow hover:bg-notion-yellow/40 text-black dark:text-white",
@@ -28,10 +29,14 @@ const colorVariants: ColorVariants = {
 
 export default function Category({ category, isMove }: CategoryProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
   const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (isMove) {
-      e.stopPropagation();
-      router.push(`/category/${category.name}`);
+      const params = new URLSearchParams(searchParams);
+      params.set("category", category.name); // URL에 category 쿼리 파라미터를 설정합니다.
+      router.push(`/?${params.toString()}`);
     }
   };
 

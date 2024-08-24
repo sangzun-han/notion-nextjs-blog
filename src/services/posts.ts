@@ -1,6 +1,7 @@
 import { getRecordMap, mapImageUrl } from "@/libs/notion";
 import { Post } from "@/types/posts";
 import { CONFIG } from "../../site.config";
+import { Block } from "notion-types";
 
 const today = new Date();
 const formattedDate = today.toISOString().split("T")[0];
@@ -26,7 +27,8 @@ export async function getAllPosts() {
   });
 
   Object.keys(block).forEach((pageId) => {
-    if (block[pageId].value.type === "page" && block[pageId].value.properties[propertyMap["category"]]) {
+    const page = block[pageId]?.value as Block & { properties: Record<string, any> };
+    if (page?.type === "page" && page.properties?.[propertyMap["category"]]) {
       const { properties, last_edited_time } = block[pageId].value;
       const contents = block[pageId].value.content || [];
       const dates = contents.map((content) => {

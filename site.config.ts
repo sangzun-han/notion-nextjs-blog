@@ -2,8 +2,8 @@ export const CONFIG = {
   profile: {
     name: "sangzun",
     image: "/profile.webp",
-    role: "frontend dev",
-    about: "안녕하세요 한상준입니다.",
+    role: "frontend developer",
+    about: "I develop everything using node and java",
     github: "https://github.com/sangzun-han",
   },
 

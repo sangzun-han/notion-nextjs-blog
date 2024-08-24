@@ -20,12 +20,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={CONFIG.lang} suppressHydrationWarning>
+      <head></head>
       <body className={`${inter.className} bg-white dark:bg-[#2f3437]`}>
         <RecoilProvider>
           <NextThemeProvider>
             <Header />
+            <main className="text-black">{children}</main>
           </NextThemeProvider>
-          <main className="text-black">{children}</main>
         </RecoilProvider>
       </body>
     </html>

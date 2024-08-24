@@ -8,7 +8,7 @@ type PostCardProps = {
 };
 
 export default function PostCard({ post }: PostCardProps) {
-  const { id, title, slug, category, date, cover } = post;
+  const { title, slug, category, date, cover } = post;
 
   const formattedSlug = slug.replace(/\s+/g, "-");
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
@@ -32,9 +32,10 @@ export default function PostCard({ post }: PostCardProps) {
         <div className="p-5">
           <header>
             <time className="text-slate-400 text-sm dark:text-slate-300">{formattedDate}</time>
-            <p className="text-xl font-semibold mb-3 dark:text-white">{title}</p>
-            <p className="text-slate-500 dark:text-slate-300">{slug}</p>
+            <p className="text-xl font-semibold mb-3 dark:text-white truncate">{title}</p>
+            <p className="text-slate-500 dark:text-slate-300 truncate">{slug}</p>
           </header>
+
           <footer className="flex flex-wrap gap-2 text-[#37352F] pt-2">
             {category.map((category) => (
               <Category category={category} key={category.name} isMove={false} />

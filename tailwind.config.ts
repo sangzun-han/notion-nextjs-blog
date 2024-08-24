@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "360px",
+      },
       colors: {
         "notion-blue": "rgba(0, 120, 223, 0.2)",
         "notion-orange": "rgba(245, 93, 0, 0.2)",

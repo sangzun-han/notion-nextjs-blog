@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Category from "../category/category";
 import { CONFIG } from "../../../site.config";
+import Category from "../category/category";
 
 type SidebarProps = {
   allCategories: {
@@ -11,27 +11,24 @@ type SidebarProps = {
 
 export default function Sidebar({ allCategories }: SidebarProps) {
   return (
-    <div className="border-b lg:border-b-0 lg:border-r border-gray-100 px-2 pb-2">
-      <aside className="bg-white p-5 sticky top-24 text-center rounded-xl dark:bg-[#3a3f41] dark:text-white shadow-lg border border-slate-200 dark:border-none">
-        <div className="mb-4 border border-slate-200 rounded-full w-24 h-24 mx-auto flex justify-center items-center">
-          <Image
-            src={CONFIG.profile.image}
-            alt="프로필 이미지"
-            width={100}
-            height={100}
-            className="rounded-full w-full"
-          />
+    <div className="px-2 pb-2 lg:max-w-[241px] lg:max-h-[372px] lg:sticky lg:top-28 top-0 static">
+      <aside className="bg-white p-5 sticky top-24 lg:text-center text-left rounded-xl dark:bg-[#3a3f41] dark:text-white shadow-lg border border-slate-200 dark:border-none mb-8 lg:block flex flex-col items-center xs:flex-row xs:items-start">
+        <div className="lg:mb-4 mb-0 rounded-full lg:w-36 lg:h-36 lg:mx-auto mx-0 w-24 h-24  flex justify-center items-center relative flex-shrink-0">
+          <Image src={CONFIG.profile.image} alt="프로필 이미지" className="rounded-full" width={200} height={200} />
         </div>
-        <p className="text-slate-500 mb-2 dark:text-slate-300 text-sm">{CONFIG.profile.role}</p>
-        <p className="text-slate-400 mb-2 dark:text-white">{CONFIG.profile.about}</p>
-        <nav>
-          <ul className="flex lg:flex-col gap-x-3 lg:gap-0 space-y-0 lg:space-y-3 flex-wrap gap-y-4 justify-start sm:justify-center">
-            {allCategories.map((category) => (
-              <Category category={category} key={category.name} isMove={true} />
-            ))}
-          </ul>
-        </nav>
+        <div className="flex flex-col lg:items-center items-center justify-center lg:ml-0 ml-4 xs:items-start">
+          <div className="text-2xl font-bold lg:mb-2 mb-0">{CONFIG.profile.name}</div>
+          <div className=" text-slate-500 dark:text-slate-300 text-sm mb-4">{CONFIG.profile.role}</div>
+          <div className="lg:text-md text-sm text-black dark:text-white text-left">{CONFIG.profile.about}</div>
+        </div>
       </aside>
+      <nav>
+        <ul className="flex lg:flex-col gap-x-3 lg:gap-0 space-y-0 lg:space-y-3 flex-wrap gap-y-4 justify-start">
+          {allCategories.map((category) => (
+            <Category category={category} key={category.name} isMove={true} />
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 }

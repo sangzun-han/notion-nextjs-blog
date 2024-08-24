@@ -3,6 +3,7 @@ import { getRecordMap } from "@/libs/notion";
 import { getAllPosts } from "@/services/posts";
 import { notFound } from "next/navigation";
 import { CONFIG } from "../../../../site.config";
+import { Post } from "@/types/posts";
 
 type PostPageProps = {
   params: {
@@ -10,8 +11,17 @@ type PostPageProps = {
   };
 };
 
+let cachedPosts: Post[] | null = null; // 전역 변수로 캐시된 포스트 데이터
+
+async function fetchPosts() {
+  if (!cachedPosts) {
+    cachedPosts = await getAllPosts(); // 캐시되지 않은 경우에만 데이터 호출
+  }
+  return cachedPosts;
+}
+
 export default async function PostPage({ params: { slug } }: PostPageProps) {
-  const posts = await getAllPosts();
+  const posts = await fetchPosts();
   const decodedSlug = decodeURIComponent(slug);
   const post = posts.find((p) => p.slug.replace(/\s+/g, "-") === decodedSlug);
 
@@ -23,37 +33,39 @@ export default async function PostPage({ params: { slug } }: PostPageProps) {
 }
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
+  const posts = await fetchPosts();
 
   return posts.map((post) => ({
-    slug: post.slug,
+    slug: post.slug.replace(/\s+/g, "-"),
   }));
 }
 
 export async function generateMetadata({ params: { slug } }: { params: { slug: string } }) {
-  const posts = await getAllPosts();
+  const posts = await fetchPosts();
   const decodedSlug = decodeURIComponent(slug);
-  const post = posts.find((p) => p.slug === decodedSlug);
+  const post = posts.find((p) => p.slug.replace(/\s+/g, "-") === decodedSlug);
 
-  return post
-    ? {
-        title: post.title,
-        description: post.slug,
-        alternate: {
-          canonical: `https://sangzun-log.vercel.app/post/${decodedSlug}`,
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+    description: post.slug,
+    alternate: {
+      canonical: `https://sangzun-log.vercel.app/post/${decodedSlug}`,
+    },
+    openGraph: {
+      type: "website",
+      url: `https://sangzun-log.vercel.app/post/${decodedSlug}`,
+      metadataBase: `${CONFIG.url}/post`,
+      images: [
+        {
+          url: post.cover ? post.cover : CONFIG.defaultImage,
+          width: 400,
+          height: 300,
         },
-        openGraph: {
-          type: "website",
-          url: `https://sangzun-log.vercel.app/post/${decodedSlug}`,
-          metadataBase: `${CONFIG.url}/post`,
-          images: [
-            {
-              url: post.cover ? post.cover : CONFIG.defaultImage,
-              width: 400,
-              height: 300,
-            },
-          ],
-        },
-      }
-    : {};
+      ],
+    },
+  };
 }
