@@ -5,7 +5,7 @@ import { getAllPosts } from "@/services/posts";
 import { CategoryInfo, Post } from "@/types/posts";
 import { Suspense } from "react";
 
-export const revalidate = 3600;
+export const revalidate = 60 * 60 * 24;
 
 export const metadata = {
   title: "Welecom | sangzun's blog",

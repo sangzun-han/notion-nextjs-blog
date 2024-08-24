@@ -13,6 +13,8 @@ type PostPageProps = {
 
 let cachedPosts: Post[] | null = null; // 전역 변수로 캐시된 포스트 데이터
 
+export const revalidate = 60 * 60 * 24;
+
 async function fetchPosts() {
   if (!cachedPosts) {
     cachedPosts = await getAllPosts(); // 캐시되지 않은 경우에만 데이터 호출

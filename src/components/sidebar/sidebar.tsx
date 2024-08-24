@@ -17,7 +17,7 @@ export default function Sidebar({ allCategories }: SidebarProps) {
           <Image src={CONFIG.profile.image} alt="프로필 이미지" className="rounded-full" width={200} height={200} />
         </div>
         <div className="flex flex-col lg:items-center items-center justify-center lg:ml-0 ml-4 xs:items-start">
-          <div className="text-2xl font-bold lg:mb-2 mb-0">{CONFIG.profile.name}</div>
+          <div className="text-xl font-bold lg:mb-2 mb-0">{CONFIG.profile.name}</div>
           <div className=" text-slate-500 dark:text-slate-300 text-sm mb-4">{CONFIG.profile.role}</div>
           <div className="lg:text-md text-sm text-black dark:text-white text-left">{CONFIG.profile.about}</div>
         </div>
